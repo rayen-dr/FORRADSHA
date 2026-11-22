@@ -1,0 +1,61 @@
+{
+  "detection": {
+    "Seuils fixes": {
+      "macro_f1": 0.445,
+      "recall_urgence": 0.086,
+      "precision_urgence": 0.575,
+      "recall_surveiller": 0.332,
+      "fausses_alertes_normal": 0.043,
+      "fausses_alertes_sport": 0.945
+    },
+    "Régression logistique": {
+      "macro_f1": 0.836,
+      "recall_urgence": 0.865,
+      "precision_urgence": 0.857,
+      "recall_surveiller": 0.767,
+      "fausses_alertes_normal": 0.027,
+      "fausses_alertes_sport": 0.001
+    },
+    "Random Forest": {
+      "macro_f1": 0.923,
+      "recall_urgence": 0.931,
+      "precision_urgence": 0.908,
+      "recall_surveiller": 0.852,
+      "fausses_alertes_normal": 0.005,
+      "fausses_alertes_sport": 0.001
+    }
+  },
+  "detection_cv": {
+    "cv_macro_f1_mean": 0.915,
+    "cv_macro_f1_std": 0.03
+  },
+  "prediction": {
+    "auc": 0.851,
+    "avg_precision": 0.307,
+    "precision": 0.224,
+    "recall": 0.589,
+    "baseline_precision": 0.123,
+    "baseline_recall": 0.557,
+    "episodes_urgence": 25,
+    "episodes_anticipes": 18,
+    "delai_median_min": 14.0
+  },
+  "anomalie": {
+    "auc_moyen": 0.617,
+    "patients": 12
+  },
+  "test_patients": [
+    "P005",
+    "P011",
+    "P012",
+    "P016",
+    "P019",
+    "P021",
+    "P023",
+    "P026",
+    "P028",
+    "P029",
+    "P030",
+    "P036"
+  ]
+}

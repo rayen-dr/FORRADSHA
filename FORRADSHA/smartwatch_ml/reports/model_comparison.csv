@@ -1,0 +1,4 @@
+,macro_f1,recall_urgence,precision_urgence,recall_surveiller,fausses_alertes_normal,fausses_alertes_sport
+Seuils fixes,0.445,0.086,0.575,0.332,0.043,0.945
+Régression logistique,0.836,0.865,0.857,0.767,0.027,0.001
+Random Forest,0.923,0.931,0.908,0.852,0.005,0.001

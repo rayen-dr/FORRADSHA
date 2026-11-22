@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8C%9A%3C/text%3E%3C/svg%3E">
+<title>Smartwatch santé – Plateforme médecin</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<section id="login" hidden><div class="card"><h1>⌚ Connexion</h1><p class="sub">Plateforme de suivi médecin / patient</p>
+<form id="lf"><input id="u" placeholder="Identifiant" autocomplete="username" required><input id="pw" type="password" placeholder="Mot de passe" autocomplete="current-password" required><div id="err"></div><button>Se connecter</button></form></div></section>
+<div id="app" hidden><header><div><h1>⌚ Dashboard médecin</h1><div class="sub">Données issues du pipeline ML (Random Forest + Gradient Boosting)</div></div>
+<div><span class="sub" id="gen"></span> <span class="sub" id="who"></span><button id="out">Déconnexion</button></div></header>
+<div class="wrap"><div class="pl" id="pl"></div><main id="main"></main></div></div>
+<script src="/static/app.js"></script></body></html>

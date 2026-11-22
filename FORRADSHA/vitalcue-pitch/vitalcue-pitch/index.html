@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VitalCue · Tech4Health</title><link rel="stylesheet" href="style.css"></head><body>
+<canvas id="gl"></canvas>
+<header class="top"><b class="logo">Vital<i>Cue</i></b><svg class="ecg" viewBox="0 0 300 30" preserveAspectRatio="none"><path d="M0 15H70l6-10 8 22 7-26 6 14h40l6-6 6 6H300"/></svg><nav id="dots"></nav><button id="clock">▶ 0:00 / 4:00</button></header>
+<main id="deck">
+
+<section class="s" data-t="15"><div class="txt"><p class="k">01 · The hook</p><h1>What if a smartwatch could recognize a medical emergency <em>before anyone realizes</em> something is wrong?</h1>
+<ul class="story"><li>A patient is alone at home.</li><li>Their vital signs begin to change.</li><li>Nobody notices, until it is serious.</li></ul></div></section>
+
+<section class="s" data-t="20"><div class="txt"><p class="k">02 · The problem and our solution</p><h2>Danger is detected too late.</h2>
+<div class="card"><ul class="tick"><li>Health deterioration is detected late.</li><li>Continuous monitoring is hard at home.</li><li>Doctors cannot watch every patient by hand.</li></ul></div>
+<p class="big">We turn passive vital-sign monitoring into <em>intelligent health-risk detection.</em></p><span class="tag">Tech4Health · Prevention and early detection</span></div></section>
+
+<section class="s" data-t="20"><div class="txt"><p class="k">03 · The patient experience</p><h2>A watch that learns <em>your</em> normal.</h2>
+<div id="metrics" class="chips"></div><p id="cap" class="cap">Tap a vital sign to see which component measures it.</p><button id="exp" class="btn">Exploded view</button>
+<p class="note">A personal baseline is calibrated at the start, instead of relying only on universal thresholds. Drag the watch to rotate it, scroll over it to zoom.</p></div><div id="stage" aria-label="3D watch"></div></section>
+
+<section class="s wide" data-t="25"><p class="k">04 · The complete technical pipeline</p><h2>One heartbeat, from wrist to doctor.</h2>
+<div class="flow"><div class="n"><b>Smartwatch sensors</b><span>Continuous vital signs</span></div><div class="n"><b>Flask API</b><span>Ingestion and authentication</span></div><div class="n"><b>Feature engineering</b><span>Baseline, trends, variations</span></div>
+<div class="n two"><div><b>Random Forest</b><span>Current risk detection</span></div><div><b>Gradient Boosting</b><span>15-minute prediction</span></div></div>
+<div class="n"><b>Decision engine</b><span>Risk level and recommended action</span></div><div class="n"><b>Doctor dashboard and patient alerts</b><span>Clear, prioritized</span></div></div>
+<p class="note">Measurements and analysis results are stored in SQLite (readings, events, alerts).</p></section>
+
+<section class="s wide" data-t="45"><p class="k">05 · The intelligence · main technical highlight</p><h2>Not “is the heart rate high?” but “is it unusual for <em>this</em> patient?”</h2>
+<div class="cols"><div class="card"><h3>Random Forest · Detection</h3><p>Classifies the current state as Normal, Monitor or Emergency. Learns relations between several vital signs, so it separates a high rate at rest from the same rate during exercise.</p></div>
+<div class="card"><h3>Gradient Boosting · Prediction</h3><p>Reads trends over time and estimates the probability of an emergency in the next 15 minutes. An early-warning signal, not a guaranteed prediction.</p></div>
+<div class="card"><h3>Feature engineering</h3><div class="chips sm"><span>Personal baseline</span><span>5-min and 30-min means</span><span>10-min slopes</span><span>Variability</span><span>Fall detection</span><span>Patient age</span></div>
+<p class="mono">Same HR 140 bpm, illustrative:</p><div class="row"><button class="btn sm" data-ctx="rest">At rest</button><button class="btn sm" data-ctx="ex">During exercise</button></div><p id="ctxout" class="out"></p></div></div></section>
+
+<section class="s wide" data-t="20"><p class="k">06 · Model performance and validation</p><h2>Real results from our training report.</h2>
+<div class="stats"><div><b data-count="92.3" data-d="1">0</b><small>% macro F1 · Random Forest</small></div><div><b data-count="93.1" data-d="1">0</b><small>% emergency recall</small></div><div><b data-count="90.8" data-d="1">0</b><small>% emergency precision</small></div><div><b data-count="0.851" data-d="3">0</b><small>forecast AUC · Gradient Boosting</small></div></div>
+<div class="card meters"><p class="mono">Emergency recall by method</p><div class="m"><span>Fixed thresholds</span><div><i data-w="8.6" class="bd"></i></div><b>8.6%</b></div><div class="m"><span>Logistic regression</span><div><i data-w="86.5" class="wa"></i></div><b>86.5%</b></div><div class="m"><span>Random Forest</span><div><i data-w="93.1"></i></div><b>93.1%</b></div></div>
+<p class="note">Split by patient: test patients were never used for training. Synthetic data: this shows technical feasibility, not clinical performance. The forecast (recall 58.9%, precision 22.4%) is an extra early-warning signal, not a diagnosis.</p></section>
+
+<section class="s wide" data-t="20"><p class="k">07 · The doctor interface</p><h2>Understandable information, not raw numbers.</h2>
+<div class="cols2"><ul class="tick"><li>Patient list and current status</li><li>Live monitoring dashboard</li><li>Vital signs against personal baselines</li><li>Detected episodes and explanations</li><li>Alert history</li><li>Access limited to assigned patients</li></ul>
+<div class="frame"><div class="fb"><i></i><i></i><i></i><span>Doctor dashboard · our real app</span></div><iframe src="dashboard.html" title="Doctor dashboard" loading="lazy"></iframe></div></div></section>
+
+<section class="s wide" data-t="20"><p class="k">08 · Patient interface and intelligent alerts</p><h2>Four levels, one clear action each.</h2>
+<div class="cols2"><div class="phone"><small>PATIENT APP · PROPOSED MOCKUP</small><div id="pst" class="pill ok">All good</div><p id="ptx">Monitoring continues. Keep wearing your watch.</p></div>
+<div class="card"><table class="lv"><tr data-lv="ok"><td><i class="d ok"></i>Normal</td><td>Continue monitoring</td></tr><tr data-lv="rest"><td><i class="d wa"></i>Rest</td><td>Recommend rest</td></tr><tr data-lv="consult"><td><i class="d or"></i>Consultation</td><td>Contact the doctor</td></tr><tr data-lv="alert"><td><i class="d bd"></i>Emergency</td><td>Trigger the emergency alert workflow</td></tr></table><p class="note">Click a level: the phone and the 3D watch react. Watch notification and hospital alert are simulated (mock_sent), not real delivery. The current frontend is a shared dashboard; this patient screen is a proposal.</p></div></div></section>
+
+<section class="s wide" data-t="30"><p class="k">09 · Live demo: from measurement to decision</p><h2>One complete scenario.</h2>
+<div class="cols2 demo"><div class="card"><div class="dh"><span>Patient P011 · synthetic · at rest</span><span id="dlv" class="pill ok">Normal</span></div><canvas id="chart" width="640" height="220"></canvas><div class="row"><button id="run" class="btn">▶ Run scenario</button><button id="rst" class="btn ghost">Reset</button><span id="vals" class="mono"></span></div></div>
+<div class="card"><h3>Why the model flagged it</h3><ul id="why" class="why"></ul><h3>Events and alerts</h3><ul id="log" class="log"></ul></div></div>
+<p class="note">Scripted replay of a synthetic scenario, so the pitch never depends on hardware or internet. The real application runs with <code>python app.py</code>.</p></section>
+
+<section class="s wide" data-t="15"><p class="k">10 · Market, impact and closing</p><h2>Built to help doctors act earlier.</h2>
+<div class="cols"><div class="card"><h3>Target market</h3><ul class="tick"><li>Hospitals and clinics</li><li>Home healthcare providers</li><li>Elderly people living independently</li><li>Patients needing continuous monitoring</li><li>Remote and underserved communities</li></ul></div>
+<div class="card"><h3>Positioning</h3><p><b>Traditional:</b> often fixed thresholds.</p><p><b>Consumer watches:</b> personal tracking.</p><p><b>Us:</b> personal baselines, multi-signal ML, 15-minute forecast, doctor-oriented workflow.</p></div>
+<div class="card"><h3>Next steps</h3><ul class="tick"><li>Real smartwatch integration</li><li>Clinical validation on real data</li><li>Real SMS and emergency links</li><li>Privacy and regulatory compliance</li></ul></div></div>
+<p class="big">Our goal is not to replace doctors. It is to help them notice what they might miss, and act earlier when every minute matters.</p>
+<div class="founder"><img src="assets/founder.jpg" alt="Founder"><div><b id="fname"></b><span id="frole"></span></div></div></section>
+</main>
+<script src="assets/three.min.js"></script><script src="watch.js"></script><script src="app.js"></script></body></html>
